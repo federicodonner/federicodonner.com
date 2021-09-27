@@ -1,0 +1,8 @@
+img {
+  image-rendering: pixelated;
+  margin-left: 20px;
+}
+
+.profilePicture {
+  width: 40%;
+}
