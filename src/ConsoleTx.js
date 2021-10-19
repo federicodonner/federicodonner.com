@@ -15,8 +15,7 @@ export default function ConsoleTx(props) {
   //   setLanguage(setBrowserLanguage());
   // });
 
-  // When initialized, it checks if it is its turn to render
-  // If it is, it divides the text into an array
+  // Splits the string letter by letter to render it one by one
   useEffect(() => {
     setTextArray(texts[language][props.text].split(""));
   }, [props, language]);

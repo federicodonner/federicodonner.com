@@ -1,16 +1,31 @@
-const promptCommands = {
-  "--help": {
+const promptCommands = [
+  {
+    words: [
+      "help",
+      "-help",
+      "-Help",
+      "--help",
+      "---help",
+      "–help",
+      "ayuda",
+      "-ayuda",
+      "--ayuda",
+      "–ayuda",
+    ],
     type: "consoleTx",
     text: "help",
   },
-  "profile picture": {
+  {
+    words: ["profile picture", "profilepicture", "foto perfil"],
     type: "image",
     image: "profilePicture",
     title: "This is me!",
+    alt: "Profile picture",
   },
-  clear: {
+  {
+    words: ["clear", "borrar", "clf"],
     type: "clear",
   },
-};
+];
 
 export default promptCommands;
