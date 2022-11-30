@@ -10,10 +10,6 @@ export default function ConsoleTx(props) {
   const [processedString, setProcessedString] = useState(null);
 
   const LETTERSPEED = 15;
-  //eslint-disable-next-line
-  // useEffect(() => {
-  //   setLanguage(setBrowserLanguage());
-  // });
 
   // Splits the string letter by letter to render it one by one
   useEffect(() => {
@@ -39,5 +35,5 @@ export default function ConsoleTx(props) {
     //eslint-disable-next-line
   }, [textArray, currentLetter]);
 
-  return <>{language && processedString && <p>> {processedString}</p>}</>;
+  return <>{language && processedString && <p> {"> " + processedString}</p>}</>;
 }

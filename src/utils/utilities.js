@@ -36,3 +36,25 @@ export function setBrowserLanguage() {
 export function setAppLanguage(idioma) {
   return storeInLS(process.env.REACT_APP_LS_IDIOMA, idioma);
 }
+
+export function downloadFile(file, updateStack) {
+  setTimeout(() => {
+    updateStack({ type: "consoleTx", text: "downloading" });
+    // console.log("downloadin " + file);
+    // fetch("http://localhost:3000/downloads/Federico_Donner_CV.pdf")
+    //   .then((resp) => resp.blob())
+    //   .then((blob) => {
+    //     const url = window.URL.createObjectURL(blob);
+    //     const a = document.createElement("a");
+    //     a.style.display = "none";
+    //     a.href = url;
+    //     // the filename you want
+    //     a.download = "todo-1.pdf";
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     window.URL.revokeObjectURL(url);
+    //     return "downloading";
+    //   })
+    //   .catch(() => alert("oh no!"));
+  }, 1000);
+}

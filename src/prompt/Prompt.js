@@ -10,7 +10,7 @@ export default function Prompt(props) {
     if (e.key === "Enter") {
       // Loads the unrecognized text first
       // it will be overwritten if it's found
-      var contentToAdd = {
+      let contentToAdd = {
         type: "consoleTx",
         text: "notRecognized",
       };
@@ -36,7 +36,7 @@ export default function Prompt(props) {
 
   return (
     <div className="promptContainer">
-      >{" "}
+      {"> "}
       <input
         type="text"
         size=""

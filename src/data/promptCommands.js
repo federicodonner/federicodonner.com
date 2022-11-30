@@ -23,8 +23,13 @@ const promptCommands = [
     alt: "Profile picture",
   },
   {
-    words: ["clear", "borrar", "clf"],
+    words: ["clear", "borrar", "cls"],
     type: "clear",
+  },
+  {
+    words: ["d"],
+    type: "download",
+    file: "this_is_a_file.txt",
   },
 ];
 

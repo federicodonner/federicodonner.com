@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { downloadFile } from "./utils/utilities";
 import "./App.css";
 import ConsoleTx from "./ConsoleTx";
 import Tx from "./Tx";
@@ -6,6 +7,7 @@ import Image from "./image/Image";
 import Prompt from "./prompt/Prompt";
 
 export default function App() {
+  // The stack is every component present in the terminal view
   const [contentStack, setContentStack] = useState([
     { type: "consoleTx", text: "welcome" },
   ]);
@@ -19,6 +21,21 @@ export default function App() {
     });
   }, [contentStack]);
 
+  // Updates the stack adding the specified element
+  function updateStack(newContent) {
+    console.log("updateStack", newContent);
+    // If the new content has a command, add it to the state to preserve
+    // the console's history
+    // If not, skip it
+    setContentStack(
+      contentStack.concat(
+        newContent.command
+          ? [{ type: "tx", text: newContent.command }, newContent]
+          : [newContent]
+      )
+    );
+  }
+
   // Function invoked by the Prompt component
   // Performs an action depending on the type returned by Prompt
   function pushContentStack(newContent) {
@@ -30,26 +47,22 @@ export default function App() {
     // If the new prompt is a download type, trigger the download
     // then write the message
     if (newContent.type === "download") {
-      console.log(newContent.file);
+      // Download file receives a callback to the function to update the stack
+      // so that it can tell the user that the file has been downloaded when it's ready
       newContent = {
         type: "consoleTx",
-        text: "downloading",
+        text: "preparingDownload",
         command: newContent.command,
       };
+      downloadFile(newContent.file, updateStack);
     }
-    // Copies the arry in state
-    var auxiliaryArray = JSON.parse(JSON.stringify(contentStack));
-    // Adds the component that shows the previously entered command in prompt
-    auxiliaryArray.push({ type: "tx", text: newContent.command });
-    // Pushes the new content
-    auxiliaryArray.push(newContent);
-    setContentStack(auxiliaryArray);
+    updateStack(newContent);
   }
 
   return (
     <div>
       {contentStack.map((content, index) => {
-        var objectToShow;
+        let objectToShow;
         switch (content.type) {
           case "tx":
             objectToShow = <Tx key={index} text={content.text} />;
